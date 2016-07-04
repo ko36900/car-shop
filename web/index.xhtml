@@ -4,28 +4,54 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <style type="text/css">
+            .smallItem
+            {
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                font-size: 12px;
+                position: fixed;
+                left: 80%;
+            }
+            .smallItem_a
+            {
+                margin: 2px 0 2px 0;
+                text-decoration: none;
+            }
+        </style>
         <title>XXXXXXX</title>
     </h:head>
     <h:body>
          <p:layout id="fullPageLayout" fullPage="true">
-
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                <p:layoutUnit position="north"  size="100" collapsible="true">
                     <p:layout id="headerLayout">
-                        <p:layoutUnit id="pictureLayout" size="30" position="north">
-                            first
+                        <p:layoutUnit id="functionLayout" size="40" position="north" collapsible="false">
+                            <a float="left" title="XXXXXX">XXXXXXXXXXXXXX</a>
+                            <div class="smallItem">
+                                <a  class="smallItem_a" href="faces/welcomePrimefaces.xhtml">
+                                    我的账号
+                                </a>
+                                <a class="smallItem_a" href="#">
+                                    我的订单
+                                </a>
+                                <a class="smallItem_a" href="#">
+                                    我的XX
+                                </a>
+                            </div>
                         </p:layoutUnit>
                         <p:layoutUnit id="textLayout" size="10" position="center">
-                            second
+                            
                         </p:layoutUnit>
                     </p:layout>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    
+                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175"  collapsible="true">
-                    <p:menu>
+                <p:layoutUnit position="west" size="175" collapsible="true">
+                    <p:panelMenu style="width: 165px;">
                         <p:submenu label="index0">
                             <p:menuitem value="index_1" url="#" />
                             <p:menuitem value="index_2" url="#" />
@@ -44,11 +70,11 @@
                             <p:menuitem value="index_3" url="#" />
                             <p:menuitem value="index_4" url="#" />
                         </p:submenu>
-                    </p:menu>
+                    </p:panelMenu>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <p:panelGrid columns="5">
+                    <p:panelGrid columns="1">
                         <p:outputPanel>
                             hhh1
                         </p:outputPanel>
@@ -64,4 +90,3 @@
             </p:layout>
     </h:body>
 </html>
-
