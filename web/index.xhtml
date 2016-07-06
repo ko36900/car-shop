@@ -4,89 +4,157 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <style type="text/css">
-            .smallItem
+        <title>Car-Shop</title>
+        <style>
+            div#header
+            {
+                display: block;
+                height: 85px;
+                width: auto;
+            }
+            span#header_first
             {
                 display: inline-block;
-                margin: 0;
-                padding: 0;
-                font-size: 12px;
-                position: fixed;
-                left: 80%;
+                height: 90px;
+                width: 1070px;
             }
-            .smallItem_a
+            span#head_second
             {
-                margin: 2px 0 2px 0;
+                height: 15px;
+                width: 240px;
+                position: absolute;
+                left: 1100px;
+                top:10px;
+            }
+            a#headLinkText
+            {
+                font-size: 12px;
+                margin-left: 5px;
                 text-decoration: none;
             }
+            a:link{color:black;}
+            a:visited{color:black;}
+            a:hover{color:grey;}
+            a:active{color:black;}
+            div#nav
+            {
+                position: absolute;
+                left: 326px;
+                top: 92px;
+                font-size: 16px;
+            }
+            span#nav_image
+            {
+                width: 330px;
+                height: 130px;
+            }
+            a#nav_button
+            {
+                height: 18px;
+                width: 32px;
+                padding: 2px 2px 2px 2px;
+                font-size: 14px;
+                position: absolute;
+                left: 510px;
+                top: 58px;
+                border-style: solid;
+                text-decoration: none;
+            }
+            div#aside
+            {
+                position: absolute;
+                left: 86px;
+                top: 208px;
+                width: 14.6em;
+                height: 320px;
+                background-color:transparent;
+            }
+            div#mainContext
+            {
+                position: absolute;
+                left: 336px;
+                top: 208px;
+                width: auto;
+                height: auto;
+            }
         </style>
-        <title>XXXXXXX</title>
     </h:head>
-    <h:body>
-         <p:layout id="fullPageLayout" fullPage="true">
-                <p:layoutUnit position="north"  size="100" collapsible="true">
-                    <p:layout id="headerLayout">
-                        <p:layoutUnit id="functionLayout" size="40" position="north" collapsible="false">
-                            <a float="left" title="XXXXXX">XXXXXXXXXXXXXX</a>
-                            <div class="smallItem">
-                                <a  class="smallItem_a" href="faces/welcomePrimefaces.xhtml">
-                                    我的账号
-                                </a>
-                                <a class="smallItem_a" href="#">
-                                    我的订单
-                                </a>
-                                <a class="smallItem_a" href="#">
-                                    我的XX
-                                </a>
-                            </div>
-                        </p:layoutUnit>
-                        <p:layoutUnit id="textLayout" size="10" position="center">
+    <h:body style="font-family:'微软雅黑';padding: 0;margin: 0;border: 0;">
+        <div id="header">
+            <span id="header_first">
+                <h:graphicImage url="resource/images/car_1.png"/>
+            </span>
+            <span id="head_second">
+                <a id="headLinkText" href="#">用户信息</a>
+                <a id="headLinkText" href="faces/login.xhtml">我的账号</a>
+                <a id="headLinkText" href="#">我的订单</a>
+            </span>
+        </div>
+        <div id="nav">
+            <span id="nav_image">
+                <h:graphicImage url="resource/images/logo.gif"/>
+            </span>
+            <span>
+                <h:inputText style="position: absolute;top: 60px;width: 160px;height: 16px"/>
+            </span>
+            <span>
+                <a id="nav_button" href="#">
+                    搜索
+                </a>
+            </span>
+        </div>
+        <div id="aside">
+            <h:form>
+                <p:tieredMenu>
+                    <p:submenu label="车身 附件">
+                       <p:menuitem value="Save"/>
+                            <p:separator/>
+                            <p:menuitem value="Update"/>
+                        </p:submenu>
+                        
+                        <p:separator/>
+                        <p:submenu label="底盘">
+                            <p:menuitem value="Delete"/>
+                        </p:submenu>
+                        
+                        <p:separator />
+                        <p:submenu label="电子电器设备">
+                            <p:submenu label="Prime Links">
+                                <p:menuitem value="Prime" url="http://www.prime.com.tr" title="xxx" />
+                                <p:separator/>
+                                <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />
+                            </p:submenu>
                             
-                        </p:layoutUnit>
-                    </p:layout>
-                </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-                </p:layoutUnit>
-
-                <p:layoutUnit position="west" size="175" collapsible="true">
-                    <p:panelMenu style="width: 165px;">
-                        <p:submenu label="index0">
-                            <p:menuitem value="index_1" url="#" />
-                            <p:menuitem value="index_2" url="#" />
-                            <p:menuitem value="index_3" url="#" />
-                            <p:menuitem value="index_4" url="#" />
+                            <p:separator/>
+                            <p:menuitem value="Mobile" outcome="faces/index" />
                         </p:submenu>
-                        <p:submenu label="index1">
-                            <p:menuitem value="index_1" url="#" />
-                            <p:menuitem value="index_2" url="#" />
-                            <p:menuitem value="index_3" url="#" />
-                            <p:menuitem value="index_4" url="#" />
+                        
+                        <p:separator/>
+                        <p:submenu label="动力传动系">
+                            <p:menuitem value="Save"/>
+                            <p:separator/>
+                            <p:menuitem value="Update"/>
                         </p:submenu>
-                        <p:submenu label="index2">
-                            <p:menuitem value="index_1" url="#" />
-                            <p:menuitem value="index_2" url="#" />
-                            <p:menuitem value="index_3" url="#" />
-                            <p:menuitem value="index_4" url="#" />
+                        
+                        <p:separator/>
+                        <p:submenu label="美容保养维修">
+                            <p:menuitem value="Save"/>
+                            <p:separator/>
+                            <p:menuitem value="Update"/>
                         </p:submenu>
-                    </p:panelMenu>
-                </p:layoutUnit>
-
-                <p:layoutUnit position="center">
-                    <p:panelGrid columns="1">
-                        <p:outputPanel>
-                            hhh1
-                        </p:outputPanel>
-                        <p:outputPanel>
-                            hhhh2
-                        </p:outputPanel>
-                        <p:outputPanel>
-                            hhhhh3
-                        </p:outputPanel>
-                    </p:panelGrid>
-                </p:layoutUnit>
-
-            </p:layout>
+                        
+                        <p:separator/>
+                        <p:submenu label="通用件 工艺件">
+                            <p:menuitem value="Save"/>
+                            <p:separator/>
+                            <p:menuitem value="Update"/>
+                        </p:submenu>
+                    </p:tieredMenu>
+            </h:form>
+        </div>
+        <div id="mainContext">
+            
+        </div>
     </h:body>
 </html>
+
