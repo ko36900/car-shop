@@ -9,7 +9,7 @@ package com.SearchPage;
  *
  * @author vita_
  */
-import static com.HomePage.HomePage.menuSearchTem;
+import com.HomePage.HomePage;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,6 +17,14 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 @ManagedBean(name = "home")
 
-public class SearchPage implements Serializable{
-    private String menuSearch =menuSearchTem;
+public class SearchPage implements Serializable {
+
+    private String menuSearch;
+    private String searchText;
+
+    public SearchPage() {
+
+        menuSearch = HomePage.menuSearchTem;
+        searchText = HomePage.searchTextTem;
+    }
 }

@@ -36,22 +36,22 @@ public class LoginController implements Serializable {
         return "";
     }
 
-    public String loginControl() {
-        if (judgeLog(username, password) == true) {   //需要生成后台的实例来进行
-            setIsLogin(true);
-            setUsernamePrint(username);
-            Cleaner();                     //比对完成之后选择是否清空用户名与密码
-            return "index.xhtml?faces-redirect=true";
-        } else {
-            setIsLogin(false);
-            setUsername("");
-            setPassword("");
-            RequestContext.getCurrentInstance().update("growl");
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "账号名或者密码输入错误"));
-            return "";
-        }
-    }
+//    public String loginControl() {
+//        if (judgeLog(username, password) == true) {   //需要生成后台的实例来进行
+//            setIsLogin(true);
+//            setUsernamePrint(username);
+//            Cleaner();                     //比对完成之后选择是否清空用户名与密码
+//            return "index.xhtml?faces-redirect=true";
+//        } else {
+//            setIsLogin(false);
+//            setUsername("");
+//            setPassword("");
+//            RequestContext.getCurrentInstance().update("growl");
+//            FacesContext context = FacesContext.getCurrentInstance();
+//            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "账号名或者密码输入错误"));
+//            return "";
+//        }
+//    }
 
     public void Cleaner() {
         if (isRemember == true) {
