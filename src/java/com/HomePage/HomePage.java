@@ -12,7 +12,7 @@ import javax.faces.bean.SessionScoped;
 
 public class HomePage {
 
-    private String searchText;
+    public static String searchTextTem;
     public static String menuSearchTem;                   //通过菜单搜索时访问的数据
 
     public String toSearch() {
@@ -24,15 +24,15 @@ public class HomePage {
     }
 
     public void Cleaner() {
-        setSearchText("");
+        setSearchTextTem("");
     }
 
-    public String getSearchText() {
-        return searchText;
+    public String getSearchTextTem() {
+        return searchTextTem;
     }
 
-    public void setSearchText(String searchText) {
-        this.searchText = searchText;
+    public void setSearchTextTem(String searchTextTem) {
+        this.searchTextTem = searchTextTem;
     }
 
     public static String getMenuSearchTem() {

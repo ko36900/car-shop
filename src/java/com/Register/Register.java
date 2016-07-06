@@ -24,17 +24,17 @@ public class Register implements Serializable {
     public Register() {
     }
 
-    public String registrationControl() {
-        if (saveData(username,password)) {   //向数据库提交数据
-
-            LoginController.isLogin = true;
-            LoginController.usernamePrint = username;
-
-            return "";
-        } else {
-            return"";
-        }
-    }
+//    public String registrationControl() {
+//        if (saveData(username,password)) {   //向数据库提交数据
+//
+//            LoginController.isLogin = true;
+//            LoginController.usernamePrint = username;
+//
+//            return "";
+//        } else {
+//            return"";
+//        }
+//    }
 
     public String getUsername() {
         return username;
