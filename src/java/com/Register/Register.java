@@ -35,7 +35,6 @@ public class Register implements Serializable {
 //            return"";
 //        }
 //    }
-
     public String getUsername() {
         return username;
     }
