@@ -5,12 +5,12 @@
  */
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import com.LoginController.LoginController;
 import com.SearchPage.SearchPage;
 import com.MyOrder.MyOrder;
+import javax.faces.bean.RequestScoped;
 
-@SessionScoped
+@RequestScoped
 @ManagedBean(name = "product")
 /**
  *
@@ -33,10 +33,12 @@ public class CertainPage implements Serializable {
         } else {
             productName = SearchPage.productToRender;
         }
-        
-        setIsFromMyOrder(false);
-        setIsFromSearchPage(false);        
-        
+
+        setIsFromMyOrder(false);                         
+        setIsFromSearchPage(false);
+        MyOrder.isFromMyOrder = false;
+        SearchPage.isFromSearchPage = false;
+
     }
 
     public boolean isIsFromMyOrder() {
