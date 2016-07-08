@@ -38,7 +38,7 @@ public class LoginController implements Serializable {
 //            setIsLogin(true);
 //            setUsernamePrint(username);
 //            Cleaner();                     //比对完成之后选择是否清空用户名与密码
-//            return "index.xhtml?faces-redirect=true";
+//            return "action_go.xhtml?faces-redirect=true";
 //        } else {
 //            setIsLogin(false);
 //            setUsername("");
