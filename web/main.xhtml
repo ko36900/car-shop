@@ -1,25 +1,23 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <style type="text/css">
-            div#index_background
+            div#main_background
             {
                 width: 1920px;
-                height: 600px;
+                height: 400px;
                 background: transparent url(resource/images/background.jpg) no-repeat;
             }
-            div#index_header
+            div#main_header
             {
                 margin: 0;
                 padding: 0;
                 border: 0;
                 height: 90px;
             }
-            ul#index_head_first
+            ul#main_head_first
             {
                 margin: 0;
                 padding: 2px 0 2px 0;
@@ -37,37 +35,37 @@
             a:visited{color:white;}
             a:hover{color:white; text-decoration: underline;}
             a:active{color:white;}
-            ul#index_search
+            ul#main_search
             {
                 text-align: center;
                 float: right;
                 margin-right: 16px;
                 height: 50px;
             }
-            div#index_nav
+            div#main_nav
             {
                 text-align: center;
                 font-size: 24px;
             }
-            .submenu
+            div#main_Context
             {
-                background: rgba(255,255,255,0.05);
+                
             }
         </style>
         <script type="text/javascript">
             function isLogin()
             {
-                userName = document.getElementById("index_user").innerHTML;
+                userName = document.getElementById("main_user").innerHTML;
                 if(userName.length === 0)
                 {
-                    document.getElementById("index_user").innerHTML="登录";
-                    document.getElementById("index_user").setAttribute("href","faces/login.xhtml");
+                    document.getElementById("main_user").innerHTML="登录";
+                    document.getElementById("main_user").setAttribute("href","login.xhtml");
                 }
                 else
                 {
-                    document.getElementById("index_order").innerHTML="我的订单";
-                    document.getElementById("index_order").setAttribute("href","orders.xhtml");
-                    document.getElementById("index_user").setAttribute("href","cancel.xhtml");
+                    document.getElementById("main_order").innerHTML="我的订单";
+                    document.getElementById("main_order").setAttribute("href","orders.xhtml");
+                    document.getElementById("main_user").setAttribute("href","cancel.xhtml");
                 }
             }
             
@@ -76,25 +74,20 @@
         <title>Car-Shop</title>
     </h:head>
     <h:body style="font-family:'微软雅黑'">
-        <div id="index_background">
-            <div id="index_header">
-                <ul id="index_head_first">
-                    <a id="index_user" class="linkText"></a>
-                    <a id="index_order" class="linkText"></a>
+        <div id="main_background">
+            <div id="main_header">
+                <ul id="main_head_first">
+                    <a id="main_user" class="linkText"></a>
+                    <a id="main_order" class="linkText"></a>
                 </ul>
-                <ul id="index_search">
-                    <h:form>
-                        <tr>
-                            <td><h:inputText style="background: rgba(255,255,255,0.25);font-size: 32px;color:#d4d4d4;"/></td>
-                            <td><h:commandButton action="main" value="搜索" style="font-size:32px;margin-left: 8px;border-radius: 0.35em;"/></td>
-                        </tr>
-                    </h:form>
-                    <!--<a class="searchText" href="faces/main.xhtml">搜索</a>-->
+                <ul id="main_search">
+                    <h:inputText style="background: rgba(255,255,255,0.25);font-size: 32px;color:#d4d4d4;"/>
+                    <h:commandButton action="main" value="搜索" style="font-size:32px;margin-left: 8px;border-radius: 0.35em;"/>
                 </ul>
             </div>
-            <div id="index_nav">
-                    <p:megaMenu style="margin-top: 16px;width:1016px;background: rgba(255,255,255,0.05);border: none;">
-                        <p:submenu  label="车身 附件">
+            <div id="main_nav">
+                    <p:megaMenu style="margin-top: 16px;width:1016px;background: rgba(255,255,255,0.05)">
+                        <p:submenu label="车身 附件">
                             <p:column>
                                 <p:submenu label="车镜">
                                     <p:menuitem value="后视镜" url="#" />
@@ -296,6 +289,7 @@
                     </p:megaMenu>
             </div>
         </div>
- 
+        <div id="main_Context">
+        </div>
     </h:body>
 </html>
