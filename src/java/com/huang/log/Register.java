@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.Register;
+package com.huang.log;
 
-import com.LoginController.LoginController;
+import com.huang.control.LogSessionBeanLocal;
+import com.huang.log.LoginController;
 import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 @SessionScoped
 @ManagedBean(name = "register")
@@ -20,18 +25,23 @@ public class Register implements Serializable {
 
     private String username;
     private String password;
+    @EJB
+    private LogSessionBeanLocal usermb;
 
     public Register() {
+        
     }
 
     public String registrationControl() {
-        if (saveData(username,password)) {   //向数据库提交数据
-
+        if (usermb.saveData(username, password)) {   //向数据库提交数据
             LoginController.isLogin = true;
             LoginController.usernamePrint = username;
 
-            return "";
+            return "index.xhtml?faces-redirect=true";
         } else {
+            RequestContext.getCurrentInstance().update("growl");
+            FacesContext context=FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"error","Username or Password Invalid!!!"));
             return"";
         }
     }

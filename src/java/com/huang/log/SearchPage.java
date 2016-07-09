@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SearchPage;
+package com.huang.log;
 
 /**
  *
  * @author vita_
  */
-import static com.HomePage.HomePage.menuSearchTem;
+import static com.huang.log.HomePage.menuSearchTem;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
