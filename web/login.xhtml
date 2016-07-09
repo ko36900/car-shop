@@ -37,15 +37,15 @@ and open the template in the editor.
         <div id="login">
             <h:form>
                 <p:outputPanel style="font-size:16px;position: absolute;left: 30px;top: 20px;">
-                    Username <h:inputText style="font-size:14px;width: 140px;height: 18px;overflow: hidden"/>
+                    Username <h:inputText value="#{login.username}" style="font-size:14px;width: 140px;height: 18px;overflow: hidden"/>
                 </p:outputPanel>
                 <p:outputPanel style="font-size:16px;position: absolute;left: 30px;top: 60px">
-                    Password <p:password style="font-size: 14px;width: 136px;height: 16px;overflow: hidden"/>
+                    Password <p:password value="#{login.password}" style="font-size: 14px;width: 136px;height: 16px;overflow: hidden"/>
                 </p:outputPanel>
                 <p:outputPanel style="position: absolute;left: 48px;top: 92px;">
-                    <h:commandButton value="Sign in"/>
+                    <h:commandButton value="Sign in" action="#{login.loginControl()}"/>
                     <h:button value="Sign up" style="margin-left: 32px" outcome="register"/>
-                    <p:selectBooleanCheckbox style="margin-left: 16px;"/>
+                    <p:selectBooleanCheckbox  value="#{login.isRemember}" style="margin-left: 16px;"/>
                     <span>Remember me</span>
                 </p:outputPanel>
             </h:form>
