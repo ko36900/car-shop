@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+        <style type="text/css">
+            div#login
+            {
+                background-color: #d5c9c9;
+                font-size: 12px;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                width: 340px;
+                height: 140px;
+                position: absolute;
+                left: 554px;
+                top: 230px;
+            }
+            span#login_button
+            {
+                position: absolute;
+                left: 48px;
+                top: 92px;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: #95d4c6">
+        <div id="login">
+            <h:form>
+                <p:outputPanel style="font-size:16px;position: absolute;left: 30px;top: 20px;">
+                    Username <h:inputText value="#{login.username}" style="font-size:14px;width: 140px;height: 18px;overflow: hidden"/>
+                </p:outputPanel>
+                <p:outputPanel style="font-size:16px;position: absolute;left: 30px;top: 60px">
+                    Password <p:password value="#{login.password}" style="font-size: 14px;width: 136px;height: 16px;overflow: hidden"/>
+                </p:outputPanel>
+                <p:outputPanel style="position: absolute;left: 48px;top: 92px;">
+                    <h:commandButton value="Sign in" action="#{login.loginControl()}"/>
+                    <h:button value="Sign up" style="margin-left: 32px" outcome="register"/>
+                    <p:selectBooleanCheckbox  value="#{login.isRemember}" style="margin-left: 16px;"/>
+                    <span>Remember me</span>
+                </p:outputPanel>
+            </h:form>
+        </div>
+    </h:body>
+</html>

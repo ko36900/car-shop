@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style type="text/css">
+            div#register
+            {
+                background-color: #d5c9c9;
+                font-size: 12px;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                width: 340px;
+                height: 160px;
+                position: absolute;
+                left: 554px;
+                top: 230px;
+            }
+        </style>
+    </h:head>
+    <h:body style="background-color: #95d4c6">
+        <p:messages showDetail="true" autoUpdate="true" style="position:absolute;left: 8px;top: 8px;"/>
+      <p:growl id="growl" sticky="true" showDetail="true" life="200" ></p:growl>
+        
+        <div id="register">
+            <h:form id="register_form">
+                <h:panelGrid  id="register_layout" columns="2" cellpadding="5px">
+                <p:outputPanel  style="position:absolute;left: 32px;top: 28px;">
+                    Username* <h:inputText id="Username" required="true" value="#{register.username}"/>
+                </p:outputPanel>
+                <p:outputPanel style="position: absolute;left: 32px;top: 58px;">
+                    Password* <p:password id="password1" match="passwor2" value="#{register.password}" required="true"/>
+                </p:outputPanel>
+                <p:outputPanel style="position: absolute;left: 32px;top: 88px;">
+                    Password* <p:password id="passwor2" required="true"/>
+                </p:outputPanel>
+                </h:panelGrid>
+                <p:outputPanel style="position: absolute;left: 108px;top: 118px">
+                    <p:commandButton value="Register"  update="register_layout" action="#{register.registrationControl()}"/>
+                </p:outputPanel>
+            </h:form>
+        </div>
+    </h:body>
+</html>
