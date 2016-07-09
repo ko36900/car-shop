@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+/**
+ *
+ * @author vita_
  */
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
@@ -12,49 +12,21 @@ import javax.faces.bean.RequestScoped;
 
 @RequestScoped
 @ManagedBean(name = "product")
-/**
- *
- * @author vita_
- */
+
 public class CertainPage implements Serializable {
 
-    private String username;
-    private String productName;
-    private boolean isFromMyOrder;
-    private boolean isFromSearchPage;
+    private String username;                               //储存用于导航栏显示的用户名称
+    private String productName;                            //储存用于展示的具体的产品名称 
 
     CertainPage() {
-        setIsFromMyOrder(MyOrder.isFromMyOrder);
-        setIsFromSearchPage(SearchPage.isFromSearchPage);
 
         username = LoginController.usernamePrint;
-        if (isFromMyOrder == true) {
+        if (MyOrder.productToRender != null) {
             productName = MyOrder.productToRender;
+            MyOrder.productToRender = null;
         } else {
             productName = SearchPage.productToRender;
+            SearchPage.productToRender = null;
         }
-
-        setIsFromMyOrder(false);                         
-        setIsFromSearchPage(false);
-        MyOrder.isFromMyOrder = false;
-        SearchPage.isFromSearchPage = false;
-
     }
-
-    public boolean isIsFromMyOrder() {
-        return isFromMyOrder;
-    }
-
-    public void setIsFromMyOrder(boolean isFromMyOrder) {
-        this.isFromMyOrder = isFromMyOrder;
-    }
-
-    public boolean isIsFromSearchPage() {
-        return isFromSearchPage;
-    }
-
-    public void setIsFromSearchPage(boolean isFromSearchPage) {
-        this.isFromSearchPage = isFromSearchPage;
-    }
-
 }
