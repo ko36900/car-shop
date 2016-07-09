@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.SearchPage;
 
 /**
@@ -23,32 +18,24 @@ import sun.util.logging.PlatformLogger;
 @ManagedBean(name = "search")
 
 public class SearchPage implements Serializable {
-    
+
     private String username;
     private String menuSearch;
     private String searchText;
-    public static boolean isFromSearchPage;
     public static String productToRender;
 
     public SearchPage() {
-        
+
         username = LoginController.usernamePrint;
         menuSearch = HomePage.menuSearchTem;
         searchText = HomePage.searchTextTem;
 
-//        somethings = new ArrayList<>();
+//        somethings = new ArrayList<>();                       //模板代码 可以更改使用
 //        SomethingOfferer=SomthingOfferer.getSomethingOfferer;
     }
 
-    public static void setIsFromSearchPage() {
-        isFromSearchPage = true;
-    }
-    
-
-
 //     private List<Something> somethings;
 //     private SomethingOfferer SomethingOfferer; 
-
 //    public void loadSomething() {
 //
 //        Logger.info("Loading Something");
@@ -62,10 +49,26 @@ public class SearchPage implements Serializable {
 //
 //            logger.log(Level.SEVERE, "Error when loading something", exc);
 //
-//            System.out.println(exc);
+//            System.out.println(exc);                          //应更改输出方式
 //        }
 //    }
-    
+
+    public String getMenuSearch() {
+        return menuSearch;
+    }
+
+    public void setMenuSearch(String menuSearch) {
+        this.menuSearch = menuSearch;
+    }
+        
+    public String getSearchText() {
+        return searchText;
+    }
+
+    public void setSearchText(String searchText) {
+        HomePage.searchTextTem = this.searchText = searchText;
+    }
+
     public String getProductToRender() {
         return productToRender;
     }
