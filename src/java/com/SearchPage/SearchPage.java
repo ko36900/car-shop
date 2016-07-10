@@ -21,7 +21,7 @@ public class SearchPage extends SuperClass implements Serializable {
     private String username;
     private String menuSearchTem;
     private String searchTextTem;
-    private String productToRenderTem;
+    private int productToRenderTem;
 
     public SearchPage() {
 
@@ -72,11 +72,11 @@ public class SearchPage extends SuperClass implements Serializable {
         this.searchTextTem = searchTextTem;
     }
 
-    public String getProductToRenderTem() {
+    public int getProductToRenderTem() {
         return productToRenderTem;
     }
 
-    public void setProductToRenderTem(String productToRenderTem) {
+    public void setProductToRenderTem(int productToRenderTem) {
         this.productToRenderTem = productToRenderTem;
         super.setProductToRender(productToRenderTem);
     }

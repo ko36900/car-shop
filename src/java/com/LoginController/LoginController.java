@@ -1,49 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.LoginController;
 
+import com.SuperClass.SuperClass;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
-@SessionScoped
+@SessionScoped                                                          //需要在用户访问网站的整段时间内保存用户的登录状态和用户名 可转由session bean实现保存功能 
 @ManagedBean(name = "login")
 /**
  *
  * @author vita_
  */
-public class LoginController implements Serializable {
+public class LoginController extends SuperClass implements Serializable {
 
     private String username;
-    public static String usernamePrint;
     private String password;
     private boolean isRemember;         //记录用户名和密码是否保存 
-    public static boolean isLogin;            //记录用户是否处于登陆状态
 
     public LoginController() {
     }
-
-    public String returnUsername() {
-        if (isLogin == true) {
-            return usernamePrint;
-        }
-        return "";
-    }
-
+    
 //    public String loginControl() {
 //        if (judgeLog(username, password) == true) {   //需要生成后台的实例来进行
-//            setIsLogin(true);
-//            setUsernamePrint(username);
+//            super.setIsLogin(true);
+//            super.setUsernamePrint(username);
 //            Cleaner();                     //比对完成之后选择是否清空用户名与密码
 //            return "action_go.xhtml?faces-redirect=true";
 //        } else {
-//            setIsLogin(false);
+//            super.setIsLogin(false);
 //            setUsername("");
 //            setPassword("");
-//            RequestContext.getCurrentInstance().update("growl");
+//            RequestContext.getCurrentInstance().update("growl");    这段一定要保留 触发前台的growl部件
 //            FacesContext context = FacesContext.getCurrentInstance();
 //            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "账号名或者密码输入错误"));
 //            return "";
@@ -52,8 +42,8 @@ public class LoginController implements Serializable {
     public void Cleaner() {
         if (isRemember == true) {
         } else {
-            setUsername("");
-            setPassword("");
+            setUsername(null);
+            setPassword(null);
         }
     }
 
@@ -79,21 +69,5 @@ public class LoginController implements Serializable {
 
     public void setIsRemember(boolean isRemember) {
         this.isRemember = isRemember;
-    }
-
-    public boolean isIsLogin() {
-        return isLogin;
-    }
-
-    public void setIsLogin(boolean isLogin) {
-        this.isLogin = isLogin;
-    }
-
-    public String getUsernamePrint() {
-        return usernamePrint;
-    }
-
-    public void setUsernamePrint(String usernamePrint) {
-        this.usernamePrint = usernamePrint;
     }
 }

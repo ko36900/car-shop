@@ -15,11 +15,12 @@ public class SuperClass {
     protected static boolean isLogin;
     protected static String searchText;
     protected static String menuSearch;
-    protected static String productToRender;
-    
-    public SuperClass(){
-    productToRender=menuSearch=searchText=usernamePrint=null;
-    isLogin=false;    
+    protected static int productToRender;
+
+    public SuperClass() {
+        menuSearch = searchText = usernamePrint = null;
+        isLogin = false;
+        productToRender = 0;
     }
 
     protected static String getUsernamePrint() {
@@ -54,14 +55,12 @@ public class SuperClass {
         SuperClass.menuSearch = menuSearch;
     }
 
-    protected static String getProductToRender() {
+    protected static int getProductToRender() {
         return productToRender;
     }
 
-    protected static void setProductToRender(String productToRender) {
+    protected  void setProductToRender(int productToRender) {
         SuperClass.productToRender = productToRender;
     }
-    
-    
 
 }
