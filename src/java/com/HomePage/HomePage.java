@@ -32,6 +32,7 @@ public class HomePage extends SuperClass {
 //    public void Cleaner() {
 //        setSearchTextTem(null);
 //    }
+    
     public void setUsernameFromSuperClass() {
         setUsername(super.getUsernamePrint());
     }

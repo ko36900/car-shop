@@ -7,6 +7,7 @@ package com.MyOrder;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import com.SuperClass.SuperClass;
+import java.util.List;
 import javax.faces.bean.RequestScoped;
 
 @RequestScoped
@@ -28,6 +29,8 @@ public class MyOrder extends SuperClass implements Serializable {
 //    public String deleteProductsFromOrder(int productQuantity,int productToRenderTem,String username){   SessionBean的函数返回boolean 显示是否删除成功 触发前端提示
 //        return"";   //刷新Order页 
 //    }
+    
+ //   public List<配件> getProductList(username){}             
     
     
     public void setUsernameFromSuperClass() {

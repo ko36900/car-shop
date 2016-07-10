@@ -21,6 +21,9 @@ public class CertainPage extends SuperClass implements Serializable {
 //                                                 //返回boolean 成功或者失败 
 //        return "";   //刷新产品页
 //    }
+//    public XX getProductInfo(int productID){}     //返回产品实例
+    
+    
     CertainPage() {
 
         setUsernameFromSuperClass();

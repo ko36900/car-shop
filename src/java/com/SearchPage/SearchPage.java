@@ -40,7 +40,7 @@ public class SearchPage extends SuperClass implements Serializable {
 
 //     private List<Something> somethings;
 //     private SomethingOfferer SomethingOfferer; 
-//    public void loadSomething() {
+//    public void loadSomething(List<Something>) {
 //
 //        Logger.info("Loading Something");
 //
