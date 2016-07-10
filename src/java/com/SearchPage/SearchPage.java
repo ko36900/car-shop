@@ -4,8 +4,7 @@ package com.SearchPage;
  *
  * @author vita_
  */
-import com.HomePage.HomePage;
-import com.LoginController.LoginController;
+import com.SuperClass.SuperClass;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +16,26 @@ import sun.util.logging.PlatformLogger;
 @RequestScoped
 @ManagedBean(name = "search")
 
-public class SearchPage implements Serializable {
+public class SearchPage extends SuperClass implements Serializable {
 
     private String username;
-    private String menuSearch;
-    private String searchText;
-    public static String productToRender;
+    private String menuSearchTem;
+    private String searchTextTem;
+    private String productToRenderTem;
 
     public SearchPage() {
 
-        username = LoginController.usernamePrint;
-        menuSearch = HomePage.menuSearchTem;
-        searchText = HomePage.searchTextTem;
+//        username = LoginController.getUsernamePrint();
+        menuSearchTem = super.getMenuSearch();
+        searchTextTem = super.getSearchText();
+        setUsernameFromSuperClass();
 
 //        somethings = new ArrayList<>();                       //模板代码 可以更改使用
 //        SomethingOfferer=SomthingOfferer.getSomethingOfferer;
+    }
+
+    public void setUsernameFromSuperClass() {
+        setUsername(super.getUsernamePrint());
     }
 
 //     private List<Something> somethings;
@@ -52,29 +56,36 @@ public class SearchPage implements Serializable {
 //            System.out.println(exc);                          //应更改输出方式
 //        }
 //    }
-
-    public String getMenuSearch() {
-        return menuSearch;
+    public String getMenuSearchTem() {
+        return menuSearchTem;
     }
 
-    public void setMenuSearch(String menuSearch) {
-        this.menuSearch = menuSearch;
-    }
-        
-    public String getSearchText() {
-        return searchText;
+    public void setMenuSearchTem(String menuSearchTem) {
+        this.menuSearchTem = menuSearchTem;
     }
 
-    public void setSearchText(String searchText) {
-        HomePage.searchTextTem = this.searchText = searchText;
+    public String getSearchTextTem() {
+        return searchTextTem;
     }
 
-    public String getProductToRender() {
-        return productToRender;
+    public void setSearchTextTem(String searchTextTem) {
+        this.searchTextTem = searchTextTem;
     }
 
-    public void setProductToRender(String productToRender) {
-        this.productToRender = productToRender;
+    public String getProductToRenderTem() {
+        return productToRenderTem;
     }
 
+    public void setProductToRenderTem(String productToRenderTem) {
+        this.productToRenderTem = productToRenderTem;
+        super.setProductToRender(productToRenderTem);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
