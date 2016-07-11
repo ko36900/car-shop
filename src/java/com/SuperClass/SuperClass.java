@@ -16,11 +16,14 @@ public class SuperClass {
     protected static String searchText;
     protected static String menuSearch;
     protected static int productToRender;
+    protected int totalNumberOfPages;
+    protected int currentPageNumber;
+    protected int[] numberOfInstancesInListOfCurrentPage;
 
     public SuperClass() {
         menuSearch = searchText = usernamePrint = null;
         isLogin = false;
-        productToRender = 0;
+        currentPageNumber = productToRender = totalNumberOfPages = 0;
     }
 
     protected static String getUsernamePrint() {
@@ -59,8 +62,32 @@ public class SuperClass {
         return productToRender;
     }
 
-    protected  void setProductToRender(int productToRender) {
+    protected static void setProductToRender(int productToRender) {
         SuperClass.productToRender = productToRender;
+    }
+
+    protected int getTotalNumberOfPages() {
+        return totalNumberOfPages;
+    }
+
+    protected void setTotalNumberOfPages(int totalNumberOfPages) {
+        this.totalNumberOfPages = totalNumberOfPages;
+    }
+
+    protected int getCurrentPageNumber() {
+        return currentPageNumber;
+    }
+
+    protected void setCurrentPageNumber(int currentPageNumber) {
+        this.currentPageNumber = currentPageNumber;
+    }
+
+    protected int[] getNumberOfInstancesInListOfCurrentPage() {
+        return numberOfInstancesInListOfCurrentPage;
+    }
+
+    protected void setNumberOfInstancesInListOfCurrentPage(int[] numberOfInstancesInListOfCurrentPage) {
+        this.numberOfInstancesInListOfCurrentPage = numberOfInstancesInListOfCurrentPage;
     }
 
 }

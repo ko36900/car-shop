@@ -23,6 +23,8 @@ public class LoginController extends SuperClass implements Serializable {
     public LoginController() {
     }
     
+    
+    
 //    public String loginControl() {
 //        if (judgeLog(username, password) == true) {   //需要生成后台的实例来进行
 //            super.setIsLogin(true);
