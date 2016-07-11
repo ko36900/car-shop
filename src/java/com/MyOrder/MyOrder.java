@@ -9,13 +9,13 @@ import javax.faces.bean.ManagedBean;
 import com.SuperClass.SuperClass;
 import java.util.List;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import com.entities.Autoparts;
 import java.util.ArrayList;
+import javax.faces.bean.SessionScoped;
 
-@RequestScoped
+@SessionScoped
 @ManagedBean(name = "order")
 /**
  *
@@ -27,13 +27,26 @@ public class MyOrder extends SuperClass implements Serializable {
     private int productToRenderTem;
     private int productQuantity;
     private List<Autoparts> listOfAutoparts;
+    private List<Autoparts> tem;
 
     public MyOrder() {
         setUsernameFromSuperClass();
+        listOfAutoparts = new ArrayList<>();
+        tem = new ArrayList<>();
     }
 
-    public void setNumbers() {
-        super.setTotalNumberOfPages((listOfAutoparts.size() / 10) + 1);                   //25实际应该为xxx.size()
+    public void setEverything() {                             //由于是sessionscoped 每次跳转到这个页面时 都要刷新
+        setUserResultList();
+        setNumbers();
+        setElementsOfThisPage();
+    }
+
+    public void setUserResultList() {                        //还未实现
+
+    }
+
+    public void setNumbers() {                                   //设置页内跳转的数字信息
+        super.setTotalNumberOfPages((listOfAutoparts.size() / 10) + 1);
         super.numberOfInstancesInListOfCurrentPage = new int[super.getTotalNumberOfPages() + 1];
         for (int i = 0; i < super.getTotalNumberOfPages(); i++) {
             numberOfInstancesInListOfCurrentPage[i] = 10;
@@ -50,14 +63,28 @@ public class MyOrder extends SuperClass implements Serializable {
         setUsername(super.getUsernamePrint());
     }
 
-//    public List<Autoparts> getElementsOfThisPage() {      可以用
-//        List<Autoparts> tem = new ArrayList<>();
+//    public List<Autoparts> getElementsOfThisPage() {
+//        List<Autoparts> tem=new ArrayList<Autoparts>();
 //        int pageNumber = super.getCurrentPageNumber();
 //        for (int i = 1; i < 11; i++) {
-//            tem[i - 1] = listOfAutoparts[(pageNumber - 1) * 10 - 1 + i];
+//            tem.add(listOfAutoparts[(pageNumber - 1) * 10 - 1 + i]);   //[i - 1] = listOfAutoparts[(pageNumber - 1) * 10 - 1 + i];
 //        }
 //        return tem;
 //    }
+    public void setElementsOfThisPage() {                                //获得每个页面展示的实例
+        tem.clear();
+        int pageNumber = super.getCurrentPageNumber();
+        for (int i = 1; i < 11; i++) {
+            tem.add(listOfAutoparts.get((pageNumber - 1) * 10 - 1 + i));//[(pageNumber - 1) * 10 - 1 + i]);   //[i - 1] = listOfAutoparts[(pageNumber - 1) * 10 - 1 + i];
+        }
+    }
+
+    public void resetPageInfo() {                                        //离开页面前清空页内跳转信息
+        super.setTotalNumberOfPages(0);
+        super.setNumberOfInstancesInListOfCurrentPage(null);
+        super.setCurrentPageNumber(0);
+        listOfAutoparts.clear();
+    }
 
     public String plusCurrentPageNumber() {
         if (super.getCurrentPageNumber() == super.getTotalNumberOfPages()) {

@@ -7,8 +7,10 @@ package com.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,12 +19,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -90,9 +94,15 @@ public class Autoparts implements Serializable {
     @Size(max = 255)
     @Column(name = "Brand")
     private String brand;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "autoparts")
+    private Collection<Shoppingcart> shoppingcartCollection;
+    @OneToMany(mappedBy = "autopartsapid")
+    private Collection<Comment> commentCollection;
     @JoinColumn(name = "SecondClass_scid", referencedColumnName = "Category_ID")
     @ManyToOne
     private Category secondClassscid;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "autoparts")
+    private Collection<OrderHasAutoparts> orderHasAutopartsCollection;
 
     public Autoparts() {
     }
@@ -218,12 +228,39 @@ public class Autoparts implements Serializable {
         this.brand = brand;
     }
 
+    @XmlTransient
+    public Collection<Shoppingcart> getShoppingcartCollection() {
+        return shoppingcartCollection;
+    }
+
+    public void setShoppingcartCollection(Collection<Shoppingcart> shoppingcartCollection) {
+        this.shoppingcartCollection = shoppingcartCollection;
+    }
+
+    @XmlTransient
+    public Collection<Comment> getCommentCollection() {
+        return commentCollection;
+    }
+
+    public void setCommentCollection(Collection<Comment> commentCollection) {
+        this.commentCollection = commentCollection;
+    }
+
     public Category getSecondClassscid() {
         return secondClassscid;
     }
 
     public void setSecondClassscid(Category secondClassscid) {
         this.secondClassscid = secondClassscid;
+    }
+
+    @XmlTransient
+    public Collection<OrderHasAutoparts> getOrderHasAutopartsCollection() {
+        return orderHasAutopartsCollection;
+    }
+
+    public void setOrderHasAutopartsCollection(Collection<OrderHasAutoparts> orderHasAutopartsCollection) {
+        this.orderHasAutopartsCollection = orderHasAutopartsCollection;
     }
 
     @Override
