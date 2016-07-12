@@ -43,6 +43,7 @@ public class CertainPage extends SuperClass implements Serializable {
     }
 
     public int getProductID() {
+        this.productID = super.getProductToRender();
         return productID;
     }
 

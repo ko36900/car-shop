@@ -11,44 +11,66 @@ and open the template in the editor.
     <h:head>
         <title>Login</title>
         <style type="text/css">
-            div#login
+            div#log_main_context
             {
-                background-color: #d5c9c9;
-                font-size: 12px;
-                padding: 0;
-                margin: 0;
-                border: 0;
-                width: 340px;
-                height: 140px;
-                position: absolute;
-                left: 554px;
-                top: 230px;
+                position: relative;
+                float:left;
+                height: 25%;
+                margin-bottom: 15%;            
             }
-            span#login_button
+            div#log_content
             {
-                position: absolute;
-                left: 48px;
-                top: 92px;
+                position: relative;
+                clear:left;
+                height: 320px;
+                width: 400px;
+                margin: 0 auto;
+                background: rgba(255,255,255,0.15);
+                font-size: 32px;
             }
         </style>
+        <script type="text/javascript">
+            function loginIsValid()
+            {
+                user = document.getElementById("log_username").value;
+                if(user.length === 0) 
+                {
+                    alert("请输入用户名");
+                    return ;
+                }
+                password = document.getElementById("log_password").value;
+                if(password.length === 0)
+                {
+                    document.getElementById("log_username").value = "";
+                    alert("请输入密码");
+                    return ;
+                }
+            }
+        </script>
+        <!-- div#LogContext: border(1px solid #666)-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body style="background-color: #95d4c6">
-        <div id="login">
-            <h:form>
-                <p:outputPanel style="font-size:16px;position: absolute;left: 30px;top: 20px;">
-                    Username <h:inputText style="font-size:14px;width: 140px;height: 18px;overflow: hidden"/>
-                </p:outputPanel>
-                <p:outputPanel style="font-size:16px;position: absolute;left: 30px;top: 60px">
-                    Password <p:password style="font-size: 14px;width: 136px;height: 16px;overflow: hidden"/>
-                </p:outputPanel>
-                <p:outputPanel style="position: absolute;left: 48px;top: 92px;">
-                    <h:commandButton value="Sign in"/>
-                    <h:button value="Sign up" style="margin-left: 32px" outcome="register"/>
-                    <p:selectBooleanCheckbox style="margin-left: 16px;"/>
-                    <span>Remember me</span>
-                </p:outputPanel>
-            </h:form>
-        </div>
+    <!-- color #95d4c6 -->
+    <h:body style="font-family:'微软雅黑';background:transparent url(resource/images/background.jpg) top left;">
+            <div id="log_main_context"></div>
+            <div id="log_content">
+                <p:growl id="login_growl" showDetail="true" life="1600"/>
+                <h:form id="log_form" style="position:absolute;left: 48px;top: 64px;" prependId="false">
+                    <p:outputLabel value="用户 " for="log_username" style="padding:6px 0 0 0;"/>
+                    <h:inputText id="log_username"  value="#{login.username}" style="font-size: 32px;width: 208px;height: 36px" />
+                    <p/>
+                    <p:outputLabel value="密码 " for="log_password"/>
+                    <p:password id="log_password" value="#{login.password}" style="font-size: 32px;width:200px;height: 36px;"/>
+                    <p/>
+                    <p:outputPanel>
+                        <td>
+                            <tr><h:commandButton value="登录" action="#{login.signIn()}" style="border-radius: 0.25em;" onmousedown="loginIsValid()"/></tr>
+                            <tr><h:button value="注册" outcome="register" style="border-radius: 0.25em;"/></tr>
+                            <tr><h:button value="首页" outcome="index" style="border-radius: 0.25em;"/></tr>
+                        </td>
+                    </p:outputPanel>
+                </h:form>
+            </div>
     </h:body>
 </html>
+

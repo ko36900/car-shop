@@ -2,159 +2,639 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Car-Shop</title>
-        <style>
-            div#header
+        <style type="text/css">
+            div#index_background
             {
-                display: block;
-                height: 85px;
-                width: auto;
+                width: 1920px;
+                height: 230px;
+                background: transparent url(resource/images/background.jpg) 75% no-repeat;
             }
-            span#header_first
+            div#index_header
             {
-                display: inline-block;
+                margin: 0;
+                padding: 0;
+                border: 0;
                 height: 90px;
-                width: 1070px;
             }
-            span#head_second
+            ul#index_head_first
             {
-                height: 15px;
-                width: 240px;
-                position: absolute;
-                left: 1100px;
-                top:10px;
+                margin: 0;
+                padding: 2px 0 2px 0;
+                float: left;
+                font-size: 32px;
+                overflow: hidden;
             }
-            a#headLinkText
+            .linkText
             {
-                font-size: 12px;
-                margin-left: 5px;
                 text-decoration: none;
+                margin-right: 16px;
+                margin-left: 16px;
             }
-            a:link{color:black;}
-            a:visited{color:black;}
-            a:hover{color:grey;}
-            a:active{color:black;}
-            div#nav
+            #index_search
             {
                 position: absolute;
-                left: 326px;
-                top: 92px;
-                font-size: 16px;
+                left: 650px;
+                height: 80px;
+                width: 600px;
+                margin: 0 auto;
+                color: #e6e6e6;
             }
-            span#nav_image
+            div#index_nav
             {
-                width: 330px;
-                height: 130px;
+                position:absolute;
+                top:170px;
+                font-size: 24px;
             }
-            a#nav_button
+            div#user_nav_second_control
             {
-                height: 18px;
-                width: 32px;
-                padding: 2px 2px 2px 2px;
-                font-size: 14px;
-                position: absolute;
-                left: 510px;
-                top: 58px;
-                border-style: solid;
-                text-decoration: none;
+                font-size: 20px;
+                float: right;
+                margin-top: 24px;
             }
-            div#aside
+            a:link{color:#e6e6e6;}
+            a:visited{color:white;}
+            a:hover{color:white; text-decoration: underline;}
+            a:active{color:white;}
+            .submenu
             {
-                position: absolute;
-                left: 86px;
-                top: 208px;
-                width: 14.6em;
-                height: 320px;
-                background-color:transparent;
-            }
-            div#mainContext
-            {
-                position: absolute;
-                left: 336px;
-                top: 208px;
-                width: auto;
-                height: auto;
+                background: rgba(255,255,255,0.05);
             }
         </style>
+        <title>Car-Shop</title>
     </h:head>
-    <h:body style="font-family:'微软雅黑';padding: 0;margin: 0;border: 0;">
-        <div id="header">
-            <span id="header_first">
-                <h:graphicImage url="resource/images/car_1.png"/>
-            </span>
-            <span id="head_second">
-                <a id="headLinkText" href="#">用户信息</a>
-                <a id="headLinkText" href="faces/login.xhtml">我的账号</a>
-                <a id="headLinkText" href="#">我的订单</a>
-            </span>
-        </div>
-        <div id="nav">
-            <span id="nav_image">
-                <h:graphicImage url="resource/images/logo.gif"/>
-            </span>
-            <span>
-                <h:inputText style="position: absolute;top: 60px;width: 160px;height: 16px"/>
-            </span>
-            <span>
-                <a id="nav_button" href="#">
-                    搜索
-                </a>
-            </span>
-        </div>
-        <div id="aside">
-            <h:form>
-                <p:tieredMenu>
-                    <p:submenu label="车身 附件">
-                        <p:menuitem value="Save"/>
-                        <p:separator/>
-                        <p:menuitem value="Update"/>
-                    </p:submenu>
+    <h:body style="font-family:'微软雅黑'">
+        <div id="index_background">
+            <div id="index_header">
+                <ul id="index_head_first">
+                    <td>
+                        <tr>
+                            <h:commandLink value="#{login.logdata.username}" action="#{login.isLogin()}"/>
+                        </tr>
+                        <tr>
+                            <h:commandLink value="我的订单" action="#{login.judgeOrderRedirect()}"/>
+                        </tr>
+                    </td>
+                </ul>
+            </div>
+                <div id="index_search">
+                    <h:form>
+                        <tr>
+                            <td><h:inputText style="background: rgba(255,255,255,0.25);font-size: 32px;color:#d4d4d4;"/></td>
+                            <td><h:button outcome="main" value="搜索" style="font-size:32px;margin-left: 8px;border-radius: 0.35em;"/></td>
+                        </tr>
+                    </h:form>
+                    <!--<a class="searchText" href="faces/main.xhtml">搜索</a>-->
+                </div>
+            <div id="index_nav">
+                <h:form prependId="false">
+                    <p:megaMenu id="user_menu" style="background: rgba(0,0,0,0.5);">
+                        <p:submenu label="车身 附件">
+                            <p:column>
+                                <p:submenu label="车镜">
+                                    <p:menuitem value="后视镜">
+                                        <f:param name="chooseItem" value="后视镜"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="遮阳板">
+                                        <f:param name="chooseItem" value="遮阳板"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="车门 车窗">
+                                    <p:menuitem value="玻璃升降器">
+                                        <f:param name="chooseItem" value="玻璃升降器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车窗">
+                                        <f:param name="chooseItem" value="车窗"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车门">
+                                        <f:param name="chooseItem" value="车门"/>
+                                    </p:menuitem>
+                                </p:submenu>
 
-                    <p:separator/>
-                    <p:submenu label="底盘">
-                        <p:menuitem value="Delete"/>
-                    </p:submenu>
+                                <p:submenu label="车内饰 外饰件">
+                                    <p:menuitem value="车顶架">
+                                        <f:param name="chooseItem" value="车顶架"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车身外部扰流器">
+                                        <f:param name="chooseItem" value="车身外部扰流器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车用窗帘">
+                                        <f:param name="chooseItem" value="车用窗帘"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车罩">
+                                        <f:param name="chooseItem" value="车罩"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="导流板">
+                                        <f:param name="chooseItem" value="导流板"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="地胶">
+                                        <f:param name="chooseItem" value="地胶"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="地毯">
+                                        <f:param name="chooseItem" value="地毯"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="方向盘套">
+                                        <f:param name="chooseItem" value="方向盘套"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="防滑垫">
+                                        <f:param name="chooseItem" value="防滑垫"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="脚垫">
+                                        <f:param name="chooseItem" value="脚垫"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="车身 车顶">
+                                    <p:menuitem value="保险杠">
+                                        <f:param name="chooseItem" value="保险杠"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="挡泥板">
+                                        <f:param name="chooseItem" value="挡泥板"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="驾驶室">
+                                        <f:param name="chooseItem" value="驾驶室"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="天窗">
+                                        <f:param name="chooseItem" value="天窗"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="叶子垫">
+                                        <f:param name="chooseItem" value="电子垫"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="坐垫">
+                                        <f:param name="chooseItem" value="坐垫"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="电子 电器">
+                                    <p:menuitem value="车载空气净化器">
+                                        <f:param name="chooseItem" value="车载空气净化器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载逆变器">
+                                        <f:param name="chooseItem" value="车载逆变器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载吸尘器">
+                                        <f:param name="chooseItem" value="车载吸尘器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载应急电源">
+                                        <f:param name="chooseItem" value="车载应急电源"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="中央控制门锁">
+                                        <f:param name="chooseItem" value="中央控制门锁"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="电子防盗系统">
+                                    <p:menuitem value="车载摄像头">
+                                        <f:param name="chooseItem" value="车载摄像头"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="倒车雷达">
+                                        <f:param name="chooseItem" value="倒车雷达"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="行车记录仪">
+                                        <f:param name="chooseItem" value="行车记录仪"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="汽车行踪仪">
+                                        <f:param name="chooseItem" value="汽车行踪仪"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="其他">
+                                    <p:menuitem value="安全气囊">
+                                        <f:param name="chooseItem" value="安全气囊"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="铰链">
+                                        <f:param name="chooseItem" value="铰链"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="仪表台">
+                                        <f:param name="chooseItem" value="仪表台"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="汽车防护">
+                                    <p:menuitem value="玻璃防爆隔热膜">
+                                        <f:param name="chooseItem" value="玻璃防爆隔热膜"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="底盘装甲">
+                                        <f:param name="chooseItem" value="底盘装甲"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="防滑链">
+                                        <f:param name="chooseItem" value="防滑链"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="汽车影音">
+                                    <p:menuitem value="车载CD机">
+                                        <f:param name="chooseItem" value="车载CD机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载MP3/MP4">
+                                        <f:param name="chooseItem" value="车载MP3/MP4"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载数码碟盒">
+                                        <f:param name="chooseItem" value="车载数码碟盒"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="座椅 安全带">
+                                    <p:menuitem value="安全带">
+                                        <f:param name="chooseItem" value="安全带"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="座椅">
+                                        <f:param name="chooseItem" value="座椅"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+                        <p:submenu label="底盘">
+                            <p:column>
+                                <p:submenu label="车轮">
+                                    <p:menuitem value="轮毂">
+                                        <f:param name="chooseItem" value="轮毂"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="轮毂轴承">
+                                        <f:param name="chooseItem" value="轮毂轴承"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="轮胎">
+                                        <f:param name="chooseItem" value="轮胎"/>
+                                    </p:menuitem>
+                                </p:submenu>
 
-                    <p:separator />
-                    <p:submenu label="电子电器设备">
-                        <p:submenu label="Prime Links">
-                            <p:menuitem value="Prime" url="http://www.prime.com.tr" title="xxx" />
-                            <p:separator/>
-                            <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />
+                                <p:submenu label="悬架系统">
+                                    <p:menuitem value="钢板弹簧">
+                                        <f:param name="chooseItem" value="钢板弹簧"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="减震器">
+                                        <f:param name="chooseItem" value="减震器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="空气弹簧">
+                                        <f:param name="chooseItem" value="空气弹簧"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="行驶系统">
+                                    <p:menuitem value="车桥">
+                                        <f:param name="chooseItem" value="车桥"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="横向稳定杆">
+                                        <f:param name="chooseItem" value="横向稳定杆"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="万向节">
+                                        <f:param name="chooseItem" value="万向节"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="转动轴">
+                                        <f:param name="chooseItem" value="转动轴"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="制动系统">
+                                    <p:menuitem value="ABS">
+                                        <f:param name="chooseItem" value="ABS"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="刹车盘">
+                                        <f:param name="chooseItem" value="刹车盘"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="汽车制动阀">
+                                        <f:param name="chooseItem" value="汽车制动阀"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="真空助力器">
+                                        <f:param name="chooseItem" value="真空助力器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="制动器">
+                                        <f:param name="chooseItem" value="制动器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="制动总泵">
+                                        <f:param name="chooseItem" value="制动总泵"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="转向系统">
+                                    <p:menuitem value="动力抓向泵">
+                                        <f:param name="chooseItem" value="动力转向泵"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="方向盘">
+                                        <f:param name="chooseItem" value="方向盘"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="拉杆球头">
+                                        <f:param name="chooseItem" value="拉杆球头"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="转向节">
+                                        <f:param name="chooseItem" value="转向节"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="转向器">
+                                        <f:param name="chooseItem" value="转向器"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
                         </p:submenu>
 
-                        <p:separator/>
-                        <p:menuitem value="Mobile" outcome="faces/index" />
-                    </p:submenu>
+                        <p:submenu label="电子电器设备">
+                            <p:column>
+                                <p:submenu label="电子控制单元">
+                                    <p:menuitem value="电子控制单元总成">
+                                        <f:param name="chooseItem" value="电子控制单元总成"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="电子零件">
+                                    <p:menuitem value="PCB">
+                                        <f:param name="chooseItem" value="PCB"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="保险丝">
+                                        <f:param name="chooseItem" value="保险丝"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="继电器">
+                                        <f:param name="chooseItem" value="继电器"/>
+                                    </p:menuitem>
+                                </p:submenu>
 
-                    <p:separator/>
-                    <p:submenu label="动力传动系">
-                        <p:menuitem value="Save"/>
-                        <p:separator/>
-                        <p:menuitem value="Update"/>
-                    </p:submenu>
+                                <p:submenu label="发动机 启动机类">
+                                    <p:menuitem value="单向离合器">
+                                        <f:param name="chooseItem" value="单向离合器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="电枢">
+                                        <f:param name="chooseItem" value="电枢"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="发电机">
+                                        <f:param name="chooseItem" value="发电机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="启动机">
+                                        <f:param name="chooseItem" value="启动机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="撞向定子">
+                                        <f:param name="chooseItem" value="转向定子"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="暖风空调系统">
+                                    <p:menuitem value="干燥剂">
+                                        <f:param name="chooseItem" value="干燥剂"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="鼓风机">
+                                        <f:param name="chooseItem" value="鼓风机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="冷凝器">
+                                        <f:param name="chooseItem" value="冷凝器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="膨胀阀">
+                                        <f:param name="chooseItem" value="膨胀阀"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="压缩机">
+                                        <f:param name="chooseItem" value="压缩机"/>
+                                    </p:menuitem>
+                                </p:submenu>
 
-                    <p:separator/>
-                    <p:submenu label="美容保养维修">
-                        <p:menuitem value="Save"/>
-                        <p:separator/>
-                        <p:menuitem value="Update"/>
-                    </p:submenu>
+                                <p:submenu label="汽车传感器">
+                                    <p:menuitem value="ABS传感器">
+                                        <f:param name="chooseItem" value="传感器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="刹车传感器">
+                                        <f:param name="chooseItem" value="刹车传感器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="位置传感器">
+                                        <f:param name="chooseItem" value="位置传感器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="温度传感器">
+                                        <f:param name="chooseItem" value="温度传感器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="压力传感器">
+                                        <f:param name="chooseItem" value="压力传感器"/>
+                                    </p:menuitem>
+                                </p:submenu>
 
-                    <p:separator/>
-                    <p:submenu label="通用件 工艺件">
-                        <p:menuitem value="Save"/>
-                        <p:separator/>
-                        <p:menuitem value="Update"/>
-                    </p:submenu>
-                </p:tieredMenu>
-            </h:form>
+                                <p:submenu label="汽车音响">
+                                    <p:menuitem value="喇叭">
+                                        <f:param name="chooseItem" value="喇叭"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="天线">
+                                        <f:param name="chooseItem" value="天线"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="扬声器">
+                                        <f:param name="chooseItem" value="扬声器"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="线束">
+                                    <p:menuitem value="线束">
+                                        <f:param name="chooseItem" value="线束"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="仪表">
+                                    <p:menuitem value="汽车仪表总成">
+                                        <f:param name="chooseItem" value="汽车仪表总成"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="仪表总成">
+                                        <f:param name="chooseItem" value="仪表总成"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="雨刮器 洗涤器">
+                                    <p:menuitem value="雨刮电机">
+                                        <f:param name="chooseItem" value="雨刮电机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="雨刮片">
+                                        <f:param name="chooseItem" value="雨刮片"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="照明系统">
+                                    <p:menuitem value="大灯">
+                                        <f:param name="chooseItem" value="大灯"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="尾灯">
+                                        <f:param name="chooseItem" value="尾灯"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="雾灯">
+                                        <f:param name="chooseItem" value="雾灯"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="转向灯">
+                                        <f:param name="chooseItem" value="转向灯"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+
+                        <p:submenu label="动力传动系">
+                            <p:column>
+                                <p:submenu label="变速器">
+                                    <p:menuitem value="变速器">
+                                        <f:param name="chooseItem" value="变速器"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="点火系统">
+                                    <p:menuitem value="点火开关">
+                                        <f:param name="chooseItem" value="点火开关"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="点火线圈">
+                                        <f:param name="chooseItem" value="点火线圈"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="火花塞">
+                                        <f:param name="chooseItem" value="火花塞"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="发动机">
+                                    <p:menuitem value="发动机总成">
+                                        <f:param name="chooseItem" value="发动机总成"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="进排气系统">
+                                    <p:menuitem value="进排气管">
+                                        <f:param name="chooseItem" value="进排气管"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="空气滤清器">
+                                        <f:param name="chooseItem" value="空气滤清器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="空调滤清器">
+                                        <f:param name="chooseItem" value="空调滤清器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="增压器">
+                                        <f:param name="chooseItem" value="增压器"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="冷却系统">
+                                    <p:menuitem value="风扇 风扇离合器">
+                                        <f:param name="chooseItem" value="风扇 风扇离合器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="节温器">
+                                        <f:param name="chooseItem" value="节温器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="水泵">
+                                        <f:param name="chooseItem" value="水泵"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="离合器">
+                                    <p:menuitem value="离合器总成">
+                                        <f:param name="chooseItem" value="离合器总成"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="配气机构">
+                                    <p:menuitem value="进排气门">
+                                        <f:param name="chooseItem" value="进排气门"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="凸轮轴">
+                                        <f:param name="chooseItem" value="凸轮轴"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="正时齿轮">
+                                        <f:param name="chooseItem" value="正时齿轮"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="燃油系统">
+                                    <p:menuitem value="空气流量器">
+                                        <f:param name="chooseItem" value="空气流量器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="喷油泵">
+                                        <f:param name="chooseItem" value="喷油泵"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="喷油嘴">
+                                        <f:param name="chooseItem" value="喷油嘴"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="燃油泵">
+                                        <f:param name="chooseItem" value="燃油泵"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="燃油箱">
+                                        <f:param name="chooseItem" value="燃油箱"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="润滑系统">
+                                    <p:menuitem value="机油箱">
+                                        <f:param name="chooseItem" value="机油箱"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="机油冷却器">
+                                        <f:param name="chooseItem" value="机油冷却器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="机油滤清器">
+                                        <f:param name="chooseItem" value="机油滤清器"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+
+                        <p:submenu label="美容保养维修">
+                            <p:column>
+                                <p:submenu label="清洗用品">
+                                    <p:menuitem value="擦车巾">
+                                        <f:param name="chooseItem" value="擦车巾"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="清洗剂">
+                                        <f:param name="chooseItem" value="清洗剂"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="洗车机">
+                                        <f:param name="chooseItem" value="洗车机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="洗车水枪">
+                                        <f:param name="chooseItem" value="洗车水枪"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="维修保养工具">
+                                    <p:menuitem value="安全锤">
+                                        <f:param name="chooseItem" value="安全锤"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="补漆笔">
+                                        <f:param name="chooseItem" value="补漆笔"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="空气压缩机">
+                                        <f:param name="chooseItem" value="空气压缩机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="抛光机">
+                                        <f:param name="chooseItem" value="抛光机"/>
+                                    </p:menuitem>
+                                </p:submenu>
+
+                                <p:submenu label="油品化学品">
+                                    <p:menuitem value="变速箱油">
+                                        <f:param name="chooseItem" value="变速箱油"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="玻璃水">
+                                        <f:param name="chooseItem" value="玻璃水"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="刹车油">
+                                        <f:param name="chooseItem" value="刹车油"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车蜡">
+                                        <f:param name="chooseItem" value="车蜡"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="机油润滑品">
+                                        <f:param name="chooseItem" value="机油润滑品"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+
+                        <p:submenu label="通用件 工艺件">
+                            <p:column>
+                                <p:submenu label="通用件">
+                                    <p:menuitem value="齿轮">
+                                        <f:param name="chooseItem" value="齿轮"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="弹簧">
+                                        <f:param name="chooseItem" value="弹簧"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="皮带">
+                                        <f:param name="chooseItem" value="皮带"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="蓄电池">
+                                        <f:param name="chooseItem" value="蓄电池"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+                    </p:megaMenu>
+                </h:form>
+            </div>
         </div>
-        <div id="mainContext">
-
+        <div id="index_display">
+            
         </div>
     </h:body>
 </html>
-

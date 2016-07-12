@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByImage", query = "SELECT c FROM Client c WHERE c.image = :image"),
     @NamedQuery(name = "Client.findByPhoneNumber", query = "SELECT c FROM Client c WHERE c.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
+    @NamedQuery(name = "Client.findByCname", query = "SELECT l FROM Logdata l WHERE l.username = :username"),
     @NamedQuery(name = "Client.findByCreatetime", query = "SELECT c FROM Client c WHERE c.createtime = :createtime")})
 public class Client implements Serializable {
 
@@ -214,5 +215,5 @@ public class Client implements Serializable {
     public String toString() {
         return "com.entities.Client[ cid=" + cid + " ]";
     }
-    
+
 }

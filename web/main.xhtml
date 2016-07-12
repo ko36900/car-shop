@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <style type="text/css">
+            div#main_background
+            {
+                width: 1920px;
+                height: 200px;
+                background: transparent url(resource/images/background.jpg) 75% no-repeat;
+            }
+            div#main_header
+            {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                height: 90px;
+            }
+            ul#main_head_first
+            {
+                margin: 0;
+                padding: 2px 0 2px 0;
+                float: left;
+                font-size: 32px;
+                overflow: hidden;
+            }
+            a.linkText
+            {
+                text-decoration: none;
+                margin-right: 16px;
+                margin-left: 16px;
+            }
+            a:link{color:#e6e6e6;}
+            a:visited{color:white;}
+            a:hover{color:white; text-decoration: underline;}
+            a:active{color:white;}
+            ul#main_search
+            {
+                text-align: center;
+                float: right;
+                margin-right: 16px;
+                height: 50px;
+            }
+            div#main_nav
+            {
+                text-align: center;
+                font-size: 24px;
+            }
+            div#main_Context
+            {
+                
+            }
+        </style>
+        <script type="text/javascript">
+            function isLogin()
+            {
+                userName = document.getElementById("main_user").innerHTML;
+                if(userName.length === 0)
+                {
+                    document.getElementById("main_user").innerHTML="登录";
+                    document.getElementById("main_user").setAttribute("href","login.xhtml");
+                }
+                else
+                {
+                    document.getElementById("main_order").innerHTML="我的订单";
+                    document.getElementById("main_order").setAttribute("href","orders.xhtml");
+                    document.getElementById("main_user").setAttribute("href","cancel.xhtml");
+                }
+            }
+            
+            window.onload = isLogin;
+        </script>
+        <title>Car-Shop</title>
+    </h:head>
+    <h:body style="font-family:'微软雅黑'">
+        <div id="main_background">
+            <div id="main_header">
+                <ul id="main_head_first">
+                    <a id="main_user" class="linkText">#{login.logdata.username}</a>
+                    <a id="main_order" class="linkText"></a>
+                </ul>
+                <h:form>
+                <ul id="main_search">
+                    <h:inputText style="background: rgba(255,255,255,0.25);font-size: 32px;color:#d4d4d4;"/>
+                    <h:commandButton action="main" value="搜索" style="font-size:32px;margin-left: 8px;border-radius: 0.35em;"/>
+                </ul>
+                </h:form>
+            </div>
+            <div id="main_nav">
+                <h:form>
+                    <p:megaMenu style="margin-top: 16px;width:1016px;background: rgba(255,255,255,0.05)">
+                        <p:submenu label="车身 附件">
+                            <p:column>
+                                <p:submenu label="车镜">
+                                    <p:menuitem value="后视镜" url="#">
+                                        <f:param name="chooseItem" value="后视镜"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="遮阳板" url="#">
+                                        <f:param name="chooseItem" value="遮阳板"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="车门 车窗">
+                                    <p:menuitem value="玻璃升降器" url="#">
+                                        <f:param name="chooseItem" value="玻璃升降器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车窗" url="#">
+                                        <f:param name="chooseItem" value="车窗"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车门" url="#">
+                                        <f:param name="chooseItem" value="车门"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="其他">
+                                    <p:menuitem value="安全气囊" url="#">
+                                        <f:param name="chooseItem" value="安全气囊"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="铰链" url="#">
+                                        <f:param name="chooseItem" value="铰链"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="仪表台" url="#">
+                                        <f:param name="chooseItem" value="仪表台"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="车身 车顶">
+                                    <p:menuitem value="保险杠" url="#">
+                                        <f:param name="chooseItem" value="保险杆"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="挡泥板" url="#">
+                                        <f:param name="chooseItem" value="挡泥板"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="驾驶室" url="#">
+                                        <f:param name="chooseItem" value="驾驶室"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="天窗" url="#">
+                                        <f:param name="chooseItem" value="天窗"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="叶子垫" url="#">
+                                        <f:param name="chooseItem" value="叶子垫"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="坐垫" url="#">
+                                        <f:param name="chooseItem" value="坐垫"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="汽车影音">
+                                    <p:menuitem value="车载CD机" url="#">
+                                        <f:param name="chooseItem" value="车载CD机"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载MP3/MP4" url="#">
+                                        <f:param name="chooseItem" value="车载MP3/MP4"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载数码碟盒" url="#">
+                                        <f:param name="chooseItem" value="车载数码碟盒"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="座椅 安全带">
+                                    <p:menuitem value="安全带" url="#">
+                                        <f:param name="chooseItem" value="安全带"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="座椅" url="#">
+                                        <f:param name="chooseItem" value="座椅"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                <p:submenu label="电子 电器">
+                                    <p:menuitem value="车载空气净化器" url="#">
+                                        <f:param name="chooseItem" value="车载空气净化器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载逆变器" url="#">
+                                        <f:param name="chooseItem" value="车载逆变器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载吸尘器" url="#">
+                                        <f:param name="chooseItem" value="车载吸尘器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车载应急电源" url="#">
+                                        <f:param name="chooseItem" value="车载应急电源"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="中央控制门锁" url="#">
+                                        <f:param name="chooseItem" value="中央控制门锁"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="电子防盗系统">
+                                    <p:menuitem value="车载摄像头" url="#">
+                                        <f:param name="chooseItem" value="车载摄像头"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="倒车雷达" url="#">
+                                        <f:param name="chooseItem" value="倒车雷达"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="行车记录仪" url="#">
+                                        <f:param name="chooseItem" value="行车记录仪"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="汽车跟踪仪" url="#">
+                                        <f:param name="chooseItem" value="汽车追踪仪"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="汽车防护">
+                                    <p:menuitem value="玻璃防爆隔热膜" url="#">
+                                        <f:param name="chooseItem" value="玻璃防爆隔热膜"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="底盘装甲" url="#">
+                                        <f:param name="chooseItem" value="底盘装甲"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="防滑链" url="#">
+                                        <f:param name="chooseItem" value="防滑链"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                            <p:column>
+                                 <p:submenu label="车内饰 外饰件">
+                                    <p:menuitem value="车顶架" url="#" >
+                                        <f:param name="chooseItem" value="车顶架"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车身外部扰流器" url="#">
+                                        <f:param name="chooseItem" value="车身外部扰流器"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车身窗帘" url="#">
+                                        <f:param name="chooseItem" value="车身窗帘"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="车罩" url="#">
+                                        <f:param name="chooseItem" value="车罩"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="导流板" url="#">
+                                        <f:param name="chooseItem" value="导流板"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="地胶" url="#">
+                                        <f:param name="chooseItem" value="地胶"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="地毯" url="#">
+                                        <f:param name="chooseItem" value="地毯"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="方向盘套" url="#">
+                                        <f:param name="chooseItem" value="方向盘套"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="防滑垫" url="#">
+                                        <f:param name="chooseItem" value="防滑垫"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="脚垫" url="#">
+                                        <f:param name="chooseItem" value="脚垫"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+
+                        <p:submenu label="底盘">
+                            <p:column>
+                                <p:submenu label="车胎 轮胎">
+                                    <p:menuitem value="轮毂" url="#">
+                                        <f:param name="chooseItem" value="轮毂"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="轮毂轴承" url="#">
+                                        <f:param name="chooseItem" value="轮毂轴承"/>
+                                    </p:menuitem>
+                                    <p:menuitem value="轮胎" url="#">
+                                        <f:param name="chooseItem" value="轮胎"/>
+                                    </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="行驶系统">
+                                    <p:menuitem value="Sports.2.1" url="#" />
+                                    <p:menuitem value="Sports.2.2" url="#" />
+                                    <p:menuitem value="Sports.2.3" url="#" />
+                                </p:submenu>
+                                <p:submenu label="悬架系统">
+                                    
+                                </p:submenu>
+                                <p:submenu label="制动系统">
+                                    
+                                </p:submenu>
+                                <p:submenu label="转向系统">
+                                    
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+
+                        <p:submenu label="电子电器设备">
+                            <p:column>
+                                <p:submenu label="电子控制单元">
+                                    <p:menuitem value="Entertainment.1.1" url="#" />
+                                    <p:menuitem value="Entertainment.1.2" url="#" />
+                                </p:submenu>
+                                <p:submenu label="电子零件">
+                                    <p:menuitem value="Entertainment.2.1" url="#" />
+                                    <p:menuitem value="Entertainment.2.2" url="#" />
+                                    <p:menuitem value="Entertainment.2.3" url="#" />
+                                </p:submenu>
+                                <p:submenu label="发动机 启动机类">
+                                    
+                                </p:submenu>
+                                <p:submenu label="暖风空调系统">
+                                    
+                                </p:submenu>
+                                <p:submenu label="汽车传感器">
+                                    
+                                </p:submenu>
+                                <p:submenu label="汽车音响">
+                                    
+                                </p:submenu>
+                                <p:submenu label="线束">
+                                    
+                                </p:submenu>
+                                <p:submenu label="仪表">
+                                    
+                                </p:submenu>
+                                <p:submenu label="雨刮器 洗涤器">
+                                    
+                                </p:submenu>
+                                <p:submenu label="照明系统">
+                                    
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+
+                        <p:submenu label="动力传动系统">
+                            <p:column>
+                                <p:submenu label="变速器">
+                                    <p:menuitem value="Tech.1.1" url="#" />
+                                    <p:menuitem value="Tech.1.2" url="#" />
+                                </p:submenu>
+                                <p:submenu label="点火系统">
+                                    <p:menuitem value="Tech.2.1" url="#" />
+                                    <p:menuitem value="Tech.2.2" url="#" />
+                                    <p:menuitem value="Tech.2.3" url="#" />
+                                </p:submenu>
+                                <p:submenu label="发动机基本组件">
+                                    
+                                </p:submenu>
+                                <p:submenu label="发动机悬置">
+                                    
+                                </p:submenu>
+                                <p:submenu label="发动机总成">
+                                    
+                                </p:submenu>
+                                <p:submenu label="进排气系统">
+                                    
+                                </p:submenu>
+                                <p:submenu label="冷却系统">
+                                    
+                                </p:submenu>
+                                <p:submenu label="离合器">
+                                    
+                                </p:submenu>
+                                <p:submenu label="配气机构">
+                                    
+                                </p:submenu>
+                                <p:submenu label="燃油系统">
+                                    
+                                </p:submenu>
+                                <p:submenu label="润滑系统">
+                                    
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+                        
+                        <p:submenu label="美容保养维护">
+                            <p:column>
+                                <p:submenu label="清洗用品">
+                                    
+                                </p:submenu>
+                                <p:submenu label="维修保养工具">
+                                    
+                                </p:submenu>
+                                <p:submenu label="油品化学品">
+                                    
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+                        
+                        <p:submenu label="通用件 工艺件">
+                            <p:column>
+                                <p:submenu label="工艺横向件">
+                                    
+                                </p:submenu>
+                                <p:submenu label="通用件">
+                                    
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+                    </p:megaMenu>
+                </h:form>
+            </div>
+        </div>
+        <div id="main_Context">
+            <h:form prependId="false">
+                <f:param id="pageNum" name="page" value=""/>
+                <p:commandLink>
+                    
+                </p:commandLink>
+            </h:form>
+        </div>
+    </h:body>
+</html>

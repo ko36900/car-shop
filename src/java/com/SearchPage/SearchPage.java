@@ -8,9 +8,7 @@ import com.SuperClass.SuperClass;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import sun.util.logging.PlatformLogger;
 import com.SessionBean.*;
 import com.entities.Autoparts;
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
@@ -32,6 +30,7 @@ public class SearchPage extends SuperClass implements Serializable {
     private int productToRenderTem;
     private List<Autoparts> listOfAutoparts;
     private List<Autoparts> tem;
+    private boolean isEmpty;
     @EJB
     SearchLocal sl;
 
@@ -47,11 +46,15 @@ public class SearchPage extends SuperClass implements Serializable {
     }
 
     public void setEverything() {                             //由于是sessionscoped 每次跳转到这个页面时 都要刷新
+        setIsEmpty(false);
         menuSearchTem = super.getMenuSearch();
         searchTextTem = super.getSearchText();
         setSearchResultList();
         setNumbers();
         setElementsOfThisPage();
+        if (tem.size() == 0) {
+            setIsEmpty(true);
+        }
     }
 
     public void setForGoToAnotherPage() {                  //去往前后页需要调用的函数  刷新tem中的实例 F
@@ -62,7 +65,9 @@ public class SearchPage extends SuperClass implements Serializable {
         tem.clear();
         int pageNumber = super.getCurrentPageNumber();
         for (int i = 1; i < 11; i++) {
-            tem.add(listOfAutoparts.get((pageNumber - 1) * 10 - 1 + i));    //[(pageNumber - 1) * 10 - 1 + i]);   //[i - 1] = listOfAutoparts[(pageNumber - 1) * 10 - 1 + i];
+            if (listOfAutoparts.get((pageNumber - 1) * 10 - 1 + i) != null) {
+                tem.add(listOfAutoparts.get((pageNumber - 1) * 10 - 1 + i));
+            }
         }
     }
 
@@ -109,17 +114,22 @@ public class SearchPage extends SuperClass implements Serializable {
         }
     }
 
-    public void setSearchTextAgain() {                       //再次进行文字搜索时 重新获得List 并且对应地刷新数字信息和tem中的实例
+    public void setSearchAgain() {                       //再次进行搜索时 重新获得List 并且对应地刷新数字信息和tem中的实例
         try {
             if (searchTextTem != "") {
                 listOfAutoparts.clear();
                 setListOfAutoparts(sl.SearchResult(searchTextTem));
                 super.setSearchText("");
-                //              super.setMenuSearch("");
-                resetPageInfo();
-                setNumbers();
-                setElementsOfThisPage();
+            } else {
+                listOfAutoparts.clear();
+                setListOfAutoparts(sl.SearchResult(menuSearchTem));
+                super.setMenuSearch("");
             }
+            //              super.setMenuSearch("");
+            resetPageInfo();
+            setNumbers();
+            setElementsOfThisPage();
+
         } catch (Exception exc) {
             logger.log(Level.SEVERE, "Error when loading something", exc);
         }
@@ -204,6 +214,14 @@ public class SearchPage extends SuperClass implements Serializable {
 
     public void setListOfAutoparts(List<Autoparts> listOfAutoparts) {
         this.listOfAutoparts = listOfAutoparts;
+    }
+
+    public boolean isIsEmpty() {
+        return isEmpty;
+    }
+
+    public void setIsEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
     }
 
 }
