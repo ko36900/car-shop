@@ -12,40 +12,81 @@ and open the template in the editor.
         <title>Register</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style type="text/css">
-            div#register
+            div#mainRegContext
             {
-                background-color: #d5c9c9;
-                font-size: 12px;
-                padding: 0;
-                margin: 0;
-                border: 0;
-                width: 340px;
-                height: 160px;
-                position: absolute;
-                left: 554px;
-                top: 230px;
+                position: relative;
+                float: left;
+                height: 25%;
+                margin-bottom: 15%;
+            }
+            div#regContext
+            {
+                position: relative;
+                clear: left;
+                height: 320px;
+                width: 400px;
+                margin: 0 auto;
+                background: rgba(255,255,255,0.25);
+                font-size: 24px;
             }
         </style>
+        <script type="text/javascript">
+            function registerIsValid()
+            {
+                regUserName = document.getElementById("reg_username").value;
+                if(regUserName.length === 0)
+                {
+                    alert("请输入用户名");
+                    return ;
+                }
+                first = document.getElementById("reg_password").value;
+                second = document.getElementById("reg_password1").value;
+                if(first === second)
+                {
+                    if(first.length === 0)
+                    {
+                        document.getElementById("reg_username").value = "";
+                        alert("请输入密码");
+                        return;
+                    }
+                }
+                else 
+                {
+                    document.getElementById("reg_username").value = "";
+                    alert("您输入的两次密码不符！");
+                    return ;
+                }
+            }
+        </script>
     </h:head>
-    <h:body style="background-color: #95d4c6">
-        <p:messages showDetail="true" autoUpdate="true" style="position:absolute;left: 8px;top: 8px;"/>
-        <div id="register">
-            <h:form id="register_form">
-                <h:panelGrid  id="register_layout" columns="2" cellpadding="5px">
-                <p:outputPanel  style="position:absolute;left: 32px;top: 28px;">
-                    Username* <h:inputText id="Username" required="true"/>
-                </p:outputPanel>
-                <p:outputPanel style="position: absolute;left: 32px;top: 58px;">
-                    Password* <p:password id="password1" match="passwor2" required="true"/>
-                </p:outputPanel>
-                <p:outputPanel style="position: absolute;left: 32px;top: 88px;">
-                    Password* <p:password id="passwor2" required="true"/>
-                </p:outputPanel>
-                </h:panelGrid>
-                <p:outputPanel style="position: absolute;left: 108px;top: 118px">
-                    <p:commandButton value="Register"  update="register_layout" action="#"/>
+    <h:body style="background: transparent url(resource/images/background.jpg);">
+        <div id="mainRegContext"></div>
+        <div id="regContext">
+            <h:form style="position:absolute;left: 36px;top: 48px;" prependId="false">
+                <p:growl id="reg_growl" showDetail="true" life="1600"/>
+                <tr>
+                    <td><p:outputLabel value="用户" for="reg_username" style="margin-right: 52px;"/></td>
+                    <td><h:inputText id="reg_username" value="#{login.username}" style="font-size: 24px;width: 240px;height: 28px" maxlength="25"/></td>
+                </tr>
+                <p/>
+                <tr>
+                    <td><p:outputLabel value="密码" for="reg_password" style="margin-right: 52px"/></td>
+                    <td><p:password id="reg_password" value="#{login.password}" style="font-size: 24px;width: 234px;height: 28px;" match="reg_password1"/></td>
+                </tr>
+                <p/>
+                <tr>
+                    <td><p:outputLabel value="确认密码" for="reg_password1"/></td>
+                    <td><p:password id="reg_password1" value="#" style="font-size: 24px;width: 234px;height: 28px"/></td>
+                </tr>
+                <p/>
+                <p:outputPanel style="position:absolute;left:72px;">
+                    <td>
+                        <tr><h:commandButton value="注册" style="border-radius: 0.25em;" action="#{login.signUp()}" onmousedown="registerIsValid()"/></tr>
+                        <tr><h:button value="首页" outcome="index" style="border-radius: 0.25em;"/></tr>
+                    </td>
                 </p:outputPanel>
             </h:form>
         </div>
     </h:body>
 </html>
+
